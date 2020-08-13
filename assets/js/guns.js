@@ -63,6 +63,16 @@ function createBullet() {
 
 // Increments bullets array by pushing bullet. sets up a way to delete array entries //
 function updateBullets(delta) { 
+    if (reloading > 0) {
+        reloading -= reloadSpeed * delta;
+    }
+
+    if (inputFire && reloading <= 0.0) {
+        reloading = 1.0;
+        let bullet = createBullet();
+        bullets.push(bullet);
+    }
+
          for (let i = 0; i < bullets.length; i++) {
          bullets[i].position.y -= bullets[i].speed;
 
@@ -81,17 +91,13 @@ function updateBullets(delta) {
             bullets.splice(i,1);
         }
    }
-   // Limit Ammo if array is equal to "0 in length" //
-   for (let i = 0; i < bullets.length; i++) {
-    bullets[i].position.y -= bullets[i].speed;
-
-    if (bullets[i].length > -1) {
+   // Limit Ammo if bullets array is equal to "0 in length" //
+   for (let i = bullets.length - 1; i >= 0; i --) {
+    if (bullets[i].dead) {
         app.stage.removeChild(bullets[i]);
-        bullets.splice(i,1);
-        setTimeout(() => {
-            updateBullets();
-        }, 500);
+        bullets.splice(i, 1);
     }
 }
     
 };
+

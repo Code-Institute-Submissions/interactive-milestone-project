@@ -30,6 +30,7 @@ function displayScore() {
     } else null;
  */
 
+
 }
 
 // 
@@ -38,4 +39,5 @@ function incrementScore() {
     if (checkPlayerCollision(ship, enemy)) {
         score = score + pointsEnemy;
     }
+    
 };

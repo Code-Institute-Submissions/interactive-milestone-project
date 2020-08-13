@@ -12,6 +12,9 @@ let keysDiv;
 let bullet;
 let bullets = [];
 let bulletspeed = 5;
+let reloadSpeed = 0.2;
+let reloading = 0;
+let inputFire = false;
 let enemyBullets = [];
 let enemyBulletSpeed = 5;
 let backgroundBack;
@@ -102,6 +105,12 @@ window.onload = function() {
     // Keyboard event handlers //
     window.addEventListener("keydown", keyDown,);
     window.addEventListener("keyup", keyUp);
+    app.stage.on("keydown", keyDown); {
+        inputFire = true;
+    };
+    app.stage.on("keyup", keyUp); {
+        inputFire = false;
+    };
 
     keysDiv = document.querySelector("#keys");
 

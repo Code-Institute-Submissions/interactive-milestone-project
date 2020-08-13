@@ -23,15 +23,34 @@ function drawPlayer() {
     ship.anchor.set(0.5);
     ship.x = app.view.width / 2;
     ship.y = app.view.height / 1.1;
+    
+    return ship;
 };
 
-// Create and Stage player on the Canvas
+// Create and Stage enemy on the Canvas
 function drawEnemy() {
-    enemy = PIXI.Sprite.from(app.loader.resources.enemy.texture);
+    enemy = PIXI.Sprite.from(app.loader.resources["enemy"].texture);
     enemy.anchor.set(0.5);
     enemy.x = app.view.width / 2.5;
-    enemy.y = app.view.height / 7;
+    enemy.y = app.view.height - 800;
+    enemy.phase = 0;
+
+    return enemy;
 };
+
+
+    function updateLevel(delta) {
+        //enemy movement
+        enemy.phase += delta * 0.05;
+        enemy.position.x = 160 + 100 * Math.cos(enemy.phase);
+        enemy.position.y = 120 + 60 * Math.sin(enemy.phase);
+      //enemy.tint = 0xff000f; red
+
+        //asteroid movement/rotation
+        asteroid.rotation += delta * 0.01;
+        
+    };
+
 
 // Setup Main Menu/Start Screen
 function startScreen() {
@@ -76,7 +95,7 @@ function gameOver() {
     gameOverText.visible = true;
     gameOverText.style = new PIXI.TextStyle({
         fill: 0x8b0000,
-        fontSize: 30,
+        fontSize: 50,
         fontFamily: "Cairo",
         fontStyle: "bold"
     })
@@ -147,11 +166,13 @@ function gameLoop(delta) {
     updateBullets();
     updateEnemyBullets(delta);
     updateAsteroids();
+    updateLevel(delta);
 
     // check player collision with enemy
     if (checkPlayerCollision(ship, enemy)) {
        // gameOver();
         //endGame();
+
     }
 
     // check player collision with enemy
@@ -200,6 +221,7 @@ function gameLoop(delta) {
     // spacebar //
     if (keys["32"]) {
         fireBullet();
+        inputFire = true;
     }
     // Press q to fire enemy bullets //
     if (keys["81"]) {

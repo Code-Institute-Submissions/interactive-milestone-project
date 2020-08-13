@@ -2,9 +2,8 @@ function asteroidPhase() {
     asteroid = PIXI.Sprite.from(app.loader.resources.asteroid.texture);
     asteroid.anchor.set(0.5);
     asteroid.x = app.view.width / 4;
-    asteroid.y = app.view.height / 3;
+    asteroid.y = app.view.height - 700;
     asteroid.speed = asteroidSpeed;
-    app.stage.addChild(asteroid);
 
     return asteroid; 
 }; 
