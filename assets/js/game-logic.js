@@ -27,7 +27,7 @@ function drawPlayer() {
 function drawEnemy() {
     enemy = PIXI.Sprite.from(app.loader.resources.enemy.texture);
     enemy.anchor.set(0.5);
-    enemy.x = app.view.width / 2;
+    enemy.x = app.view.width / 2.5;
     enemy.y = app.view.height / 7;
 };
 
@@ -115,15 +115,7 @@ function updateBackground() {
     backgroundBack.tilePosition.y = backgroundX / 4;
 };
 
-// check if player collides with enemy //
-function checkPlayerCollisionWithEnemy() {
 
-    if (ship.position.y == enemy.position.y &&
-        ship.position.x == enemy.position.x) {
-        endGame();
-        gameOver();
-    }
-};
 
 // sends to game over screen //
 function endGame() {
@@ -135,13 +127,37 @@ function endGame() {
     }
 };
 
+function moveEnemy() {
+    enemy.y += 0.5;
+    enemy.x += 0.085;   
+};
+
+function moveAsteroid() {
+    asteroid.y += 0.5;
+}
+
+
 // The Game Loop //
 function gameLoop(delta) {
-
+    moveEnemy();
+    moveAsteroid();
     updateBackground(delta);
     updateBullets();
     updateEnemyBullets(delta);
     updateAsteroids();
+
+    // check player collision with enemy
+    if (checkPlayerCollision(ship, enemy)) {
+        gameOver();
+        endGame();
+    }
+
+    // check player collision with enemy
+    if (checkPlayerCollision(ship, asteroid)) {
+        gameOver();
+        endGame();
+    }
+
     
     // Ship Controls //
     

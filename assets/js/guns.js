@@ -44,14 +44,14 @@ function updateEnemyBullets(delta) {
 
 // shoot bullets //
 function fireBullet() {
-    let bullet = createBullet();
+    bullet = createBullet();
     bullets.push(bullet);
     
 };
 
 // Creates the players bullets, assigns values and adds to game window //
 function createBullet() {
-    let bullet = PIXI.Sprite.from(app.loader.resources.bullet.texture);
+    bullet = PIXI.Sprite.from(app.loader.resources.bullet.texture);
     bullet.anchor.set(0.5);
     bullet.x = ship.x;
     bullet.y = ship.y - 28;
