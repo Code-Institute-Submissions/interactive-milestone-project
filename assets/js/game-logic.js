@@ -181,7 +181,7 @@ function gameLoop(delta) {
     if (keys["32"]) {
         fireBullet();
     }
-    // Press Q to fire enemy bullets //
+    // Press q to fire enemy bullets //
     if (keys["81"]) {
         enemyFireBullet();
     }

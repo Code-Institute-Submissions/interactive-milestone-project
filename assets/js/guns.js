@@ -28,8 +28,6 @@ function updateEnemyBullets(delta) {
          }
     }
 
-    let a;
-    
     // removes enemyBullets from array when enemyBullet position is offscreen. //
     for (let i = 0; i < enemyBullets.length; i++) {
         enemyBullets[i].position.y += enemyBullets[i].speed;
