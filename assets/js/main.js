@@ -23,6 +23,7 @@ let startGame;
 let titleText;
 let gameOverText;
 let comets = [];
+var none;
 
 // load and set the canvas window //
 window.onload = function() {

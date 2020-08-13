@@ -2,7 +2,7 @@ function asteroidPhase() {
     asteroid = PIXI.Sprite.from(app.loader.resources.asteroid.texture);
     asteroid.anchor.set(0.5);
     asteroid.x = app.view.width / 4;
-    asteroid.y = app.view.height / 4;
+    asteroid.y = app.view.height / 3;
     asteroid.speed = asteroidSpeed;
     app.stage.addChild(asteroid);
 
@@ -14,8 +14,6 @@ function updateAsteroids() {
         comets[i].position.y += comets[i].speed;
     }
 }
-
-
 
 function fireAsteroid() {
     let asteroid = asteroidPhase();
