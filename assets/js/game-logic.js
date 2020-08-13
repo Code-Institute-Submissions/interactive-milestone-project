@@ -4,6 +4,8 @@ function initLevel() {
     app.stage.addChild(ship);
     app.stage.addChild(enemy);
     app.stage.addChild(asteroid);
+    displayScore();
+    app.stage.addChild(scoreText);
 
 }
 
@@ -148,8 +150,8 @@ function gameLoop(delta) {
 
     // check player collision with enemy
     if (checkPlayerCollision(ship, enemy)) {
-        gameOver();
-        endGame();
+       // gameOver();
+        //endGame();
     }
 
     // check player collision with enemy
@@ -157,8 +159,10 @@ function gameLoop(delta) {
         gameOver();
         endGame();
     }
-
     
+    displayScore();
+    incrementScore();
+
     // Ship Controls //
     
     // A //

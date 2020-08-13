@@ -23,6 +23,10 @@ let startGame;
 let titleText;
 let gameOverText;
 let comets = [];
+let scoreText;
+let score = 0;
+let pointsAsteroid = 10;
+let pointsEnemy = 50;
 
 // load and set the canvas window //
 window.onload = function() {

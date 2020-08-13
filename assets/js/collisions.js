@@ -1,3 +1,5 @@
+
+// function to check if 2 variable collide
 function checkPlayerCollision(a, b) {
     let boundBoxA = a.getBounds();
     let boundBoxB = b.getBounds();
