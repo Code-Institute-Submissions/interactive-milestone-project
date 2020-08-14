@@ -1,3 +1,4 @@
+
 function initLevel() {
     startGame.visible = false;
     titleText.visible = false;
@@ -7,7 +8,7 @@ function initLevel() {
     displayScore();
     app.stage.addChild(scoreText);
 
-}
+};
 
 function createBackground(texture) {
     let tiling = new PIXI.TilingSprite(texture, 800, 600);
@@ -15,7 +16,19 @@ function createBackground(texture) {
     app.stage.addChild(tiling);
 
     return tiling;
-}
+};
+
+// function to check if 2 variable collide
+function checkPlayerCollision(a, b) {
+    let boundBoxA = a.getBounds();
+    let boundBoxB = b.getBounds();
+
+    return boundBoxA.x + boundBoxA.width > boundBoxB.x &&
+           boundBoxA.x < boundBoxB.x + boundBoxB.width &&
+
+           boundBoxA.y + boundBoxA.height > boundBoxB.y &&
+           boundBoxA.y < boundBoxB.y + boundBoxB.height;
+};
 
 function drawPlayer() {
     // Create and Stage player on the Canvas //
@@ -27,6 +40,7 @@ function drawPlayer() {
     return ship;
 };
 
+/*
 // Create and Stage enemy on the Canvas
 function drawEnemy() {
     enemy = PIXI.Sprite.from(app.loader.resources["enemy"].texture);
@@ -36,7 +50,7 @@ function drawEnemy() {
     enemy.phase = 0;
 
     return enemy;
-};
+}; */
 
 
     function updateLevel(delta) {
@@ -48,6 +62,7 @@ function drawEnemy() {
 
         //asteroid movement/rotation
         asteroid.rotation += delta * 0.01;
+        
         
     };
 
@@ -160,6 +175,7 @@ function moveAsteroid() {
 
 // The Game Loop //
 function gameLoop(delta) {
+
     moveEnemy();
     moveAsteroid();
     updateBackground(delta);
@@ -167,22 +183,27 @@ function gameLoop(delta) {
     updateEnemyBullets(delta);
     updateAsteroids();
     updateLevel(delta);
+    
+
 
     // check player collision with enemy
+
     if (checkPlayerCollision(ship, enemy)) {
        // gameOver();
         //endGame();
+        ship.tint = 0x00ff00; //green
+        enemy.tint = 0x00ff00; //green
 
     }
 
     // check player collision with enemy
     if (checkPlayerCollision(ship, asteroid)) {
-        gameOver();
-        endGame();
+       ship.tint = 0x00ff00; //green
+       enemy.tint = 0x00ff00; //green
     }
     
-    displayScore();
     incrementScore();
+    displayScore();
 
     // Ship Controls //
     
@@ -223,15 +244,14 @@ function gameLoop(delta) {
         fireBullet();
         inputFire = true;
     }
-    // Press q to fire enemy bullets //
-    if (keys["81"]) {
-        enemyFireBullet();
-    }
     // press c
     if (keys["67"]) {
         fireAsteroid();
     }
-    
+    // Press q to fire enemy bullets //
+    if (keys["81"]) {
+         enemyFireBullet();
+    } 
 
 
 };

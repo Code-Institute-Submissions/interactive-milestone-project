@@ -4,6 +4,7 @@ function asteroidPhase() {
     asteroid.x = app.view.width / 4;
     asteroid.y = app.view.height - 700;
     asteroid.speed = asteroidSpeed;
+    
 
     return asteroid; 
 }; 

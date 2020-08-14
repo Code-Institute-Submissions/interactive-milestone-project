@@ -1,8 +1,9 @@
+
+
 // shoot enemy bullets //
 function enemyFireBullet() {
-
-    let enemyBullet = createEnemyBullet();
-    enemyBullets.push(enemyBullet);
+        let enemyBullet = createEnemyBullet();
+        enemyBullets.push(enemyBullet);    
 };
 
 // Creates the enemies bullets, assigns values and adds to game window //
@@ -36,9 +37,28 @@ function updateEnemyBullets(delta) {
             app.stage.removeChild(enemyBullets[i]);
             enemyBullets.splice(i,1);
         }
-   }
     
+        // check if bullets[] hits enemy, then turn enemy red
+        if (checkPlayerCollision(enemyBullets[i], ship)) {
+            // gameOver();
+            //endGame();
+            enemyBullets[i].dead = true;
+            ship.tint = 0xff000f; //red
+     
+        }
+
+        // check if bullets[] hits asteroid, then tint asteroid red
+        if (checkPlayerCollision(enemyBullets[i], ship)) {
+        // gameOver();
+        //endGame();
+            enemyBullets[i].dead = true;
+            ship.tint = 0xff000f; //red
+     
+        }
+    }
 };
+
+
 
 
 
@@ -46,6 +66,9 @@ function updateEnemyBullets(delta) {
 function fireBullet() {
     bullet = createBullet();
     bullets.push(bullet);
+
+
+ 
     
 };
 
@@ -58,8 +81,9 @@ function createBullet() {
     bullet.speed = bulletspeed;
     app.stage.addChild(bullet);    
 
-    return bullet; 
+    return bullet;
 };
+
 
 // Increments bullets array by pushing bullet. sets up a way to delete array entries //
 function updateBullets(delta) { 
@@ -98,6 +122,38 @@ function updateBullets(delta) {
         bullets.splice(i, 1);
     }
 }
-    
+
+
+    for (let i = 0; i < bullets.length; i++) {
+        bullets[i].position.y -= bullets[i].speed;
+
+        if (bullets[i].dead) {
+            app.stage.removeChild(bullets[i]);
+            bullets.splice(i);
+        }
+
+        // check if bullets[] hits enemy, then turn enemy red
+        if (checkPlayerCollision(bullets[i], enemy)) {
+            // gameOver();
+             //endGame();
+             bullets[i].dead = true;
+             enemy.tint = 0xff000f; //red
+     
+         }
+
+         // check if bullets[] hits asteroid, then tint asteroid red
+         if (checkPlayerCollision(bullets[i], asteroid)) {
+            // gameOver();
+             //endGame();
+             bullets[i].dead = true;
+             asteroid.tint = 0xff000f; //red
+     
+         }
+    }
 };
 
+
+
+/*
+    
+     */

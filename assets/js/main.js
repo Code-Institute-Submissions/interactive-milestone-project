@@ -5,6 +5,7 @@ let endScreen;
 let app;
 let ship;
 let enemy;
+let enemies = [];
 let asteroid;
 let asteroidSpeed = 2;
 let keys = {};
@@ -30,6 +31,9 @@ let scoreText;
 let score = 0;
 let pointsAsteroid = 10;
 let pointsEnemy = 50;
+let points = [];
+
+
 
 // load and set the canvas window //
 window.onload = function() {
@@ -115,3 +119,4 @@ window.onload = function() {
     keysDiv = document.querySelector("#keys");
 
 };
+
