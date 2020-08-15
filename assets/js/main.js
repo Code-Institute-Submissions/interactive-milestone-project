@@ -31,7 +31,6 @@ let scoreText;
 let score = 0;
 let pointsAsteroid = 10;
 let pointsEnemy = 50;
-let points = [];
 
 
 
@@ -111,9 +110,6 @@ window.onload = function() {
     window.addEventListener("keyup", keyUp);
     app.stage.on("keydown", keyDown); {
         inputFire = true;
-    };
-    app.stage.on("keyup", keyUp); {
-        inputFire = false;
     };
 
     keysDiv = document.querySelector("#keys");

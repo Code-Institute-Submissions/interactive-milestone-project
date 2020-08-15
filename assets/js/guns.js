@@ -87,45 +87,34 @@ function createBullet() {
 
 // Increments bullets array by pushing bullet. sets up a way to delete array entries //
 function updateBullets(delta) { 
-    if (reloading > 0) {
-        reloading -= reloadSpeed * delta;
-    }
-
-    if (inputFire && reloading <= 0.0) {
-        reloading = 1.0;
-        let bullet = createBullet();
-        bullets.push(bullet);
-    }
-
-         for (let i = 0; i < bullets.length; i++) {
-         bullets[i].position.y -= bullets[i].speed;
+    for (let i = 0; i < bullets.length; i++) {
+         bullets[i].position.y -= bullets[i].speed + 6;
 
          if (bullets[i].position.y < 0) {
              bullets[i].dead = true;
          }
-         
-}
+    }
 
     // removes bullets from array when bullet position is offscreen. //
     for (let i = 0; i < bullets.length; i++) {
-        bullets[i].position.y -= bullets[i].speed;
-
+        // if bullets in index is dead, remove it
         if (bullets[i].dead) {
             app.stage.removeChild(bullets[i]);
             bullets.splice(i,1);
         }
-   }
-   // Limit Ammo if bullets array is equal to "0 in length" //
-   for (let i = bullets.length - 1; i >= 0; i --) {
-    if (bullets[i].dead) {
-        app.stage.removeChild(bullets[i]);
-        bullets.splice(i, 1);
     }
-}
+    // decrement bullets array if i is equal to "0 in length" //
+    for (let i = bullets.length - 1; i >= 0; i--) {
+        // if bullets in index is dead, remove it
+        if (bullets[i].dead) {
+            app.stage.removeChild(bullets[i]);
+            bullets.splice(i, 1);
+        }
+    }
 
 
     for (let i = 0; i < bullets.length; i++) {
-        bullets[i].position.y -= bullets[i].speed;
+         bullets[i].position.y -= bullets[i].speed;
 
         if (bullets[i].dead) {
             app.stage.removeChild(bullets[i]);
@@ -134,16 +123,16 @@ function updateBullets(delta) {
 
         // check if bullets[] hits enemy, then turn enemy red
         if (checkPlayerCollision(bullets[i], enemy)) {
-            // gameOver();
-             //endGame();
+           //gameOver();
+           //endGame();
              bullets[i].dead = true;
-             enemy.tint = 0xff000f; //red
+             enemy.tint = 0xff000f;
      
          }
 
          // check if bullets[] hits asteroid, then tint asteroid red
          if (checkPlayerCollision(bullets[i], asteroid)) {
-            // gameOver();
+             //gameOver();
              //endGame();
              bullets[i].dead = true;
              asteroid.tint = 0xff000f; //red
@@ -151,9 +140,3 @@ function updateBullets(delta) {
          }
     }
 };
-
-
-
-/*
-    
-     */

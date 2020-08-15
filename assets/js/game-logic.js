@@ -18,7 +18,7 @@ function createBackground(texture) {
     return tiling;
 };
 
-// function to check if 2 variable collide
+// function to check if 2 variables collide
 function checkPlayerCollision(a, b) {
     let boundBoxA = a.getBounds();
     let boundBoxB = b.getBounds();
@@ -31,7 +31,7 @@ function checkPlayerCollision(a, b) {
 };
 
 function drawPlayer() {
-    // Create and Stage player on the Canvas //
+    // Create and Stage player on the Canvas
     ship = PIXI.Sprite.from(app.loader.resources.ship.texture);
     ship.anchor.set(0.5);
     ship.x = app.view.width / 2;
@@ -117,7 +117,7 @@ function gameOver() {
     app.stage.addChild(gameOverText);
 };
 
-// Controls: Press Enter to Start Game //
+// Controls: Press Enter to Start Game
 function switchContainer(e) {
     if (keys["13"]) {
         titleScreen.visible = false;
@@ -127,6 +127,7 @@ function switchContainer(e) {
                 
     }
 
+    // Test if Game Over screen is working
     if (keys["49"]) {
         gameOver();
         endGame();
@@ -144,6 +145,7 @@ function keyUp(e) {
     keys[e.keyCode] = false;
 };
 
+// update positions of tiling in the parallaxing background
 function updateBackground() {
     backgroundX = (backgroundX + backgroundSpeed);
     backgroundFront.tilePosition.y = backgroundX;
@@ -163,14 +165,42 @@ function endGame() {
     }
 };
 
+// Moves enemy ship from top and offscreen to bottom and offscreen
 function moveEnemy() {
     enemy.y += 0.5;
     enemy.x += 0.085;   
 };
 
+// move asteroid towards the player
 function moveAsteroid() {
     asteroid.y += 0.5;
 }
+
+
+
+// check to prevent player from leaving the screen || Note: issues getting top of screen collision working.
+function checkScreenBounds(delta) {
+
+    let screenHeight = app.view.height;
+    let screenWidth = app.view.width;
+
+    // bottom of screen || Note: Only seems to work as / 1.1
+    if (ship.y == screenHeight / 1.1) {
+        ship.y -= 5;
+    };
+    //top of screen || Note: Does not work at all
+    if (ship.y == screenHeight - 25) {
+        ship.y += 5;
+    };
+    //left side of screen
+    if (ship.x == screenWidth - 775) {
+        ship.x += 5;
+    };
+    //right side of screen
+    if (ship.x == screenWidth - 25) {
+        ship.x -= 5;
+    };
+};
 
 
 // The Game Loop //
@@ -183,11 +213,10 @@ function gameLoop(delta) {
     updateEnemyBullets(delta);
     updateAsteroids();
     updateLevel(delta);
-    
+    checkScreenBounds(delta);
 
 
-    // check player collision with enemy
-
+    // Check if Player collides with the Enemy
     if (checkPlayerCollision(ship, enemy)) {
        // gameOver();
         //endGame();
@@ -196,7 +225,7 @@ function gameLoop(delta) {
 
     }
 
-    // check player collision with enemy
+    // Check if Player collision with an Asteroid
     if (checkPlayerCollision(ship, asteroid)) {
        ship.tint = 0x00ff00; //green
        enemy.tint = 0x00ff00; //green
@@ -207,39 +236,39 @@ function gameLoop(delta) {
 
     // Ship Controls //
     
-    // A //
+    // A is left
     if (keys["65"]) {
         ship.x -= 5;
     }
-    // D //
+    // D is right
     if (keys["68"]) {
         ship.x += 5;
     }
-    // <- //
+    // <- is left
     if (keys["37"]) {
         ship.x -= 5;
     }
-    // -> //
+    // -> is right
     if (keys["39"]) {
         ship.x += 5;
     }
-    // ^ //
+    // ^ is up
     if (keys["38"]) {
         ship.y -= 5;
     }
-    // downArrow //
+    // downArrow is down
     if (keys["40"]) {
         ship.y += 5;
     }
-    // W //
+    // W is up
     if (keys["87"]) {
         ship.y -= 5;
     }
-    // S //
+    // S is down
     if (keys["83"]) {
         ship.y += 5;
     }
-    // spacebar //
+    // spacebar fires lasers
     if (keys["32"]) {
         fireBullet();
         inputFire = true;
