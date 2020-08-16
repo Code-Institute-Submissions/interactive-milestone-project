@@ -2,11 +2,11 @@
 function initLevel() {
     startGame.visible = false;
     titleText.visible = false;
+    mainScreen.visible = true;
     app.stage.addChild(ship);
     app.stage.addChild(enemy);
     app.stage.addChild(asteroid);
     displayScore();
-    app.stage.addChild(scoreText);
 
 };
 
@@ -30,6 +30,39 @@ function checkPlayerCollision(a, b) {
            boundBoxA.y < boundBoxB.y + boundBoxB.height;
 };
 
+function asteroidPhase() {
+    asteroid = PIXI.Sprite.from(app.loader.resources.asteroid.texture);
+    asteroid.anchor.set(0.5);
+    asteroid.x = app.view.width - 600;
+    asteroid.y = app.view.height - 700;
+    asteroid.speed = asteroidSpeed;
+    app.stage.addChild(asteroid);
+
+    return asteroid; 
+};
+
+function asteroidPhase1() {
+    asteroid = PIXI.Sprite.from(app.loader.resources.asteroid.texture);
+    asteroid.anchor.set(0.5);
+    asteroid.x = app.view.width - 200;
+    asteroid.y = app.view.height - 700;
+    asteroid.speed = asteroidSpeed;
+    app.stage.addChild(asteroid);
+
+    return asteroid; 
+};
+
+function asteroidPhase2() {
+    asteroid = PIXI.Sprite.from(app.loader.resources.asteroid.texture);
+    asteroid.anchor.set(0.5);
+    asteroid.x = app.view.width - 400;
+    asteroid.y = app.view.height - 700;
+    asteroid.speed = asteroidSpeed;
+    app.stage.addChild(asteroid);
+
+    return asteroid; 
+};
+
 function drawPlayer() {
     // Create and Stage player on the Canvas
     ship = PIXI.Sprite.from(app.loader.resources.ship.texture);
@@ -40,29 +73,39 @@ function drawPlayer() {
     return ship;
 };
 
-/*
-// Create and Stage enemy on the Canvas
 function drawEnemy() {
     enemy = PIXI.Sprite.from(app.loader.resources["enemy"].texture);
     enemy.anchor.set(0.5);
-    enemy.x = app.view.width / 2.5;
+    enemy.x = app.view.width / 3;
+    enemy.y = app.view.height - 800;
+    app.stage.addChild(enemy);
+    return enemy;
+};
+
+function drawEnemy2() {
+    enemy = PIXI.Sprite.from(app.loader.resources["enemy"].texture);
+    enemy.anchor.set(0.5);
+    enemy.x = app.view.width / 1.5;
     enemy.y = app.view.height - 800;
     enemy.phase = 0;
-
+    app.stage.addChild(enemy);
     return enemy;
-}; */
+}
 
 
     function updateLevel(delta) {
         //enemy movement
-        enemy.phase += delta * 0.05;
+     /*   enemy.phase += delta * 0.05;
         enemy.position.x = 160 + 100 * Math.cos(enemy.phase);
         enemy.position.y = 120 + 60 * Math.sin(enemy.phase);
-      //enemy.tint = 0xff000f; red
+      //enemy.tint = 0xff000f; red */
 
-        //asteroid movement/rotation
-        asteroid.rotation += delta * 0.01;
-        
+        if (titleText.visible == false) {
+            app.stage.addChild(scoreText);
+            asteroid.y += 2.5;
+            asteroid.rotation += delta * 0.01;
+            enemy.y += 2;
+        }
         
     };
 
@@ -165,16 +208,7 @@ function endGame() {
     }
 };
 
-// Moves enemy ship from top and offscreen to bottom and offscreen
-function moveEnemy() {
-    enemy.y += 0.5;
-    enemy.x += 0.085;   
-};
-
 // move asteroid towards the player
-function moveAsteroid() {
-    asteroid.y += 0.5;
-}
 
 
 
@@ -202,19 +236,52 @@ function checkScreenBounds(delta) {
     };
 };
 
+function spawner1() {
+    // update enemy spawning
+    if (enemy.x == app.view.width / 3) {
+        if (enemy.y > app.view.height + 15) {
+            drawEnemy2();
+        }
+    };
+    if (enemy.x == app.view.width / 1.5) {
+        if (enemy.y > app.view.height + 15) {
+            drawEnemy();
+        }
+    };
+}
+
+function asteroidSpawner1() {
+    // update asteroid spawning
+    if (asteroid.x == app.view.width - 600) {
+        if (asteroid.y > app.view.height + 20) {
+            asteroidPhase1();
+        }
+    };
+    if (asteroid.x == app.view.width - 200) {
+        if (asteroid.y == app.view.height + 20) {
+            asteroidPhase2();
+        }
+    };
+    if (asteroid.x == app.view.width - 400) {
+        if (asteroid.y == app.view.height + 20) {
+            asteroidPhase();
+        }
+    };
+};
 
 // The Game Loop //
 function gameLoop(delta) {
 
-    moveEnemy();
-    moveAsteroid();
     updateBackground(delta);
     updateBullets();
     updateEnemyBullets(delta);
-    updateAsteroids();
     updateLevel(delta);
     checkScreenBounds(delta);
 
+    spawner1();
+    asteroidSpawner1();
+
+    // update asteroid spawning
 
     // Check if Player collides with the Enemy
     if (checkPlayerCollision(ship, enemy)) {
@@ -222,7 +289,6 @@ function gameLoop(delta) {
         //endGame();
         ship.tint = 0x00ff00; //green
         enemy.tint = 0x00ff00; //green
-
     }
 
     // Check if Player collision with an Asteroid
@@ -231,8 +297,11 @@ function gameLoop(delta) {
        enemy.tint = 0x00ff00; //green
     }
     
-    incrementScore();
-    displayScore();
+    //incrementScore();
+    displayScore(delta);
+    scoreText.visible = true;
+    
+    
 
     // Ship Controls //
     
@@ -275,7 +344,8 @@ function gameLoop(delta) {
     }
     // press c
     if (keys["67"]) {
-        fireAsteroid();
+       // fireEnemiesVertical();
+       
     }
     // Press q to fire enemy bullets //
     if (keys["81"]) {

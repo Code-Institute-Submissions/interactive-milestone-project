@@ -1,4 +1,4 @@
-
+/* ------------------------------------- Enemy bullets ------------------------------------- */
 
 // shoot enemy bullets //
 function enemyFireBullet() {
@@ -58,18 +58,13 @@ function updateEnemyBullets(delta) {
     }
 };
 
-
-
-
+/* ------------------------------------- Player Bullets ------------------------------------- */
 
 // shoot bullets //
 function fireBullet() {
     bullet = createBullet();
     bullets.push(bullet);
 
-
- 
-    
 };
 
 // Creates the players bullets, assigns values and adds to game window //
@@ -78,6 +73,7 @@ function createBullet() {
     bullet.anchor.set(0.5);
     bullet.x = ship.x;
     bullet.y = ship.y - 28;
+    bullet.dy = bullet.y + 15;
     bullet.speed = bulletspeed;
     app.stage.addChild(bullet);    
 
@@ -125,8 +121,11 @@ function updateBullets(delta) {
         if (checkPlayerCollision(bullets[i], enemy)) {
            //gameOver();
            //endGame();
-             bullets[i].dead = true;
-             enemy.tint = 0xff000f;
+            bullets[i].dead = true;
+            app.stage.removeChild(enemy);
+            enemy.dead = true;
+            score += pointsEnemy;
+           //  enemy.tint = 0xff000f;
      
          }
 

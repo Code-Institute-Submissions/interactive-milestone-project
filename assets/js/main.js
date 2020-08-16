@@ -5,9 +5,10 @@ let endScreen;
 let app;
 let ship;
 let enemy;
-let enemies = [];
+let enemiesVertical = [];
+let enemySpeed = 5;
 let asteroid;
-let asteroidSpeed = 2;
+let asteroidSpeed = 4;
 let keys = {};
 let keysDiv;
 let bullet;
@@ -29,8 +30,7 @@ let gameOverText;
 let comets = [];
 let scoreText;
 let score = 0;
-let pointsAsteroid = 10;
-let pointsEnemy = 50;
+let pointsEnemy = 100;
 
 
 
@@ -108,9 +108,6 @@ window.onload = function() {
     // Keyboard event handlers //
     window.addEventListener("keydown", keyDown,);
     window.addEventListener("keyup", keyUp);
-    app.stage.on("keydown", keyDown); {
-        inputFire = true;
-    };
 
     keysDiv = document.querySelector("#keys");
 
