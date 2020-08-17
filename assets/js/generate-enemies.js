@@ -1,6 +1,7 @@
 
 
-// METHOD ARRAYS
+// USES ARRAYS TO CREATE A CONTINUOUS STREAM OF ENEMIES WHEN FUNCTION IS CALLED
+
 // Create and Stage enemy on the Canvas
 /*
 function drawEnemy() {
@@ -72,5 +73,3 @@ function updateEnemiesVertical(delta) {
 };
 
 */
-
-//METHOD MULTI FUNCTION

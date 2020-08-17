@@ -1,12 +1,12 @@
 /* ------------------------------------- Enemy bullets ------------------------------------- */
 
-// shoot enemy bullets //
+// Shoots enemy bullets
 function enemyFireBullet() {
         let enemyBullet = createEnemyBullet();
         enemyBullets.push(enemyBullet);    
 };
 
-// Creates the enemies bullets, assigns values and adds to game window //
+// Creates the enemies bullets
 
 function createEnemyBullet() {
     let enemyBullet = PIXI.Sprite.from(app.loader.resources.enemyBullet.texture);
@@ -19,7 +19,7 @@ function createEnemyBullet() {
     return enemyBullet; 
 };
 
-// Increments enemyBullets array by pushing enemyBullet. sets up a way to delete array entries //
+// Increments enemyBullets array by pushing enemyBullet. sets up a way to delete array entries
 function updateEnemyBullets(delta) {
     for (let i = 0; i < enemyBullets.length; i++) {
          enemyBullets[i].position.y += enemyBullets[i].speed;
@@ -29,7 +29,7 @@ function updateEnemyBullets(delta) {
          }
     }
 
-    // removes enemyBullets from array when enemyBullet position is offscreen. //
+    // Removes enemyBullets from array when enemyBullet position is offscreen
     for (let i = 0; i < enemyBullets.length; i++) {
         enemyBullets[i].position.y += enemyBullets[i].speed;
 
@@ -60,14 +60,14 @@ function updateEnemyBullets(delta) {
 
 /* ------------------------------------- Player Bullets ------------------------------------- */
 
-// shoot bullets //
+// This function pushes the bullet to the bullets array
 function fireBullet() {
     bullet = createBullet();
     bullets.push(bullet);
 
 };
 
-// Creates the players bullets, assigns values and adds to game window //
+// Creates the Players bullet
 function createBullet() {
     bullet = PIXI.Sprite.from(app.loader.resources.bullet.texture);
     bullet.anchor.set(0.5);
@@ -81,7 +81,7 @@ function createBullet() {
 };
 
 
-// Increments bullets array by pushing bullet. sets up a way to delete array entries //
+// Allows us to loop the bullets array in order to update the position of each bullet
 function updateBullets(delta) { 
     for (let i = 0; i < bullets.length; i++) {
          bullets[i].position.y -= bullets[i].speed + 6;
@@ -91,7 +91,7 @@ function updateBullets(delta) {
          }
     }
 
-    // removes bullets from array when bullet position is offscreen. //
+    // Removes bullets from array when bullet position is offscreen
     for (let i = 0; i < bullets.length; i++) {
         // if bullets in index is dead, remove it
         if (bullets[i].dead) {
@@ -99,7 +99,7 @@ function updateBullets(delta) {
             bullets.splice(i,1);
         }
     }
-    // decrement bullets array if i is equal to "0 in length" //
+    // Loops backwards through the bullets array to allow us to remove the first entry into the array
     for (let i = bullets.length - 1; i >= 0; i--) {
         // if bullets in index is dead, remove it
         if (bullets[i].dead) {
@@ -117,7 +117,7 @@ function updateBullets(delta) {
             bullets.splice(i);
         }
 
-        // check if bullets[] hits enemy, then turn enemy red
+        // check if bullets[] hits enemy, then turn enemy red and increment the score
         if (checkPlayerCollision(bullets[i], enemy)) {
            //gameOver();
            //endGame();
