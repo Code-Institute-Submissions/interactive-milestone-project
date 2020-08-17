@@ -4,7 +4,7 @@
 // This function sets up and updates our score
 function displayScore() {
 
-    scoreText = new PIXI.Text("Score: " + score);
+    scoreText = new PIXI.Text("Score:");
     scoreText.anchor.set(0);
     scoreText.x = app.view.width - 790;
     scoreText.y = app.view.height - 590;
@@ -16,6 +16,7 @@ function displayScore() {
         fontStyle: "normal",
         strokeThickness: 0
     })
+    scoreText.text = "Score: " + score;
 };
 
 // This function when called removes the title text, adds our Player ship, an Enemy and an Asteroid to the screen
@@ -27,7 +28,9 @@ function initLevel() {
     app.stage.addChild(ship);
     app.stage.addChild(enemy);
     app.stage.addChild(asteroid);
-    displayScore();
+        //incrementScore();
+        displayScore();
+        scoreText.visible = true;
 
 };
 
@@ -132,7 +135,7 @@ function updateLevel(delta) {
         app.stage.addChild(scoreText);
         asteroid.y += 2.5;
         asteroid.rotation += delta * 0.01;
-        enemy.y += 2;
+        enemy.y += 3;
     }
         
 };
@@ -331,9 +334,7 @@ function gameLoop(delta) {
        enemy.tint = 0x00ff00; //green
     }
     
-    //incrementScore();
-    displayScore(delta);
-    scoreText.visible = true;
+
 
     // Ship Controls
     // A is move Player ship left

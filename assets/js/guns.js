@@ -117,25 +117,23 @@ function updateBullets(delta) {
             bullets.splice(i);
         }
 
-        // check if bullets[] hits enemy, then turn enemy red and increment the score
+        // check if bullets[] hits enemy, then increments the score
         if (checkPlayerCollision(bullets[i], enemy)) {
            //gameOver();
            //endGame();
             bullets[i].dead = true;
             app.stage.removeChild(enemy);
             enemy.dead = true;
-            score += pointsEnemy;
-           //  enemy.tint = 0xff000f;
-     
+            score = score += pointsEnemy;
+            scoreText.text = "Score: " + score;
          }
 
-         // check if bullets[] hits asteroid, then tint asteroid red
+         // check if bullets[] hits asteroid, then asteroid "blocks the bullets"
          if (checkPlayerCollision(bullets[i], asteroid)) {
              //gameOver();
              //endGame();
              bullets[i].dead = true;
-             asteroid.tint = 0xff000f; //red
-     
+             
          }
     }
 };
