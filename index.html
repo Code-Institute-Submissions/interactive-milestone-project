@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <title>Inertia Override</title>
-    <script src="assets/js/pixi.js"></script>
 
+    <! -- Link and load our css stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <! -- The name of our game displayed in the page tab in the browser -->
+    <title>Inertia Override</title>
+
+    <! -- Link our dependencies. In this case PIXI.js which allows for WebGL or canvas rendering,
+          depending on what each browser supports. Loads before the page (and our game logic) is fully loaded -->
+    <script src="assets/js/pixi.js"></script>
 </head>
+
     <body>
+
+        <! -- This allows us to display our game on the page -->
         <div id="game-window"></div>
     </body>
     <footer>
+
+        <! -- Link our JavaScript logic for the game, Loads once document is loaded -->
         <script src="assets/js/generate-enemies.js"></script>
         <script src="assets/js/game-logic.js"></script>       
         <script src="assets/js/main.js"></script>
