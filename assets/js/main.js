@@ -34,6 +34,11 @@ let comets = [];
 let scoreText;
 let score = 0;
 let pointsEnemy = 100;
+let deltaTotalSinceLastBulletRequested = 0;
+let coolDownBetweenBulletRequested = 1;
+let deltaTotalSinceLastBulletFired = 0;
+let coolDownBetweenBulletFired = 12;
+let bulletRequested = false;
 
 // Sets the canvas size and color to be loader to the onload PIXI method
 // contains other setup oriented functions associated with the users play area (canvas)

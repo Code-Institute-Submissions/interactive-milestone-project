@@ -59,13 +59,7 @@ function updateEnemyBullets(delta) {
 };
 
 /* ------------------------------------- Player Bullets ------------------------------------- */
-var deltaTotalSinceLastBulletRequested = 0;
-var coolDownBetweenBulletRequested = 1;
 
-var deltaTotalSinceLastBulletFired = 0;
-var coolDownBetweenBulletFired = 12;
-
-var bulletRequested = false;
 
 // This function pushes the bullet to the bullets array
 function fireBullet(delta) {
