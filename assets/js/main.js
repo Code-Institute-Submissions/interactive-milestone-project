@@ -16,7 +16,7 @@ let keys = {};
 let keysDiv;
 let bullet;
 let bullets = [];
-let bulletspeed = 5;
+let bulletspeed = 3;
 let reloadSpeed = 0.2;
 let reloading = 0;
 let inputFire = false;
@@ -38,13 +38,12 @@ let pointsEnemy = 100;
 // Sets the canvas size and color to be loader to the onload PIXI method
 // contains other setup oriented functions associated with the users play area (canvas)
 window.onload = function() {
-    app =  new PIXI.Application(
-        {
+    app = new PIXI.Application({
             width: 800,
             height: 600,
             backgroundColor: 0x000000
         }
-        
+
 
     );
     // Assign the game window canvas to a HTML div with the id game-window
@@ -78,7 +77,7 @@ window.onload = function() {
     function showProgress(e) {
         console.log(e.progress);
     }
-    
+
     // This function fires functions that show, the parallaxing background, title text, allow the game to start
     // and draws our first asteroid and enemy, but does not move the enemy or asteroid
     function doneLoading(e) {
@@ -90,7 +89,7 @@ window.onload = function() {
         drawPlayer();
         drawEnemy();
         asteroidPhase();
-        
+
     }
 
     // Shows an Alert box to the user if the assets added in the loader could not be loaded
@@ -104,25 +103,24 @@ window.onload = function() {
         backgroundBack = createBackground(app.loader.resources["backgroundBack"].texture);
         backgroundMiddle = createBackground(app.loader.resources["backgroundMiddle"].texture);
         backgroundFront = createBackground(app.loader.resources["backgroundFront"].texture);
-        
+
     }
 
     // setup screens //
     titleScreen = new PIXI.Container();
     mainScreen = new PIXI.Container();
     endScreen = new PIXI.Container();
-    
+
     mainScreen.visible = false;
     endScreen.visible = false;
-    
+
     app.stage.addChild(endScreen);
 
     // Keyboard event handlers allows us to listen for when a user presses a key and lifts it on the keyboard
-    window.addEventListener("keydown", keyDown,);
+    window.addEventListener("keydown", keyDown, );
     window.addEventListener("keyup", keyUp);
 
     // Allows us to track and call specific keys on the keyboard
     keysDiv = document.querySelector("#keys");
 
 };
-

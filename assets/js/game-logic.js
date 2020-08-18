@@ -28,15 +28,15 @@ function initLevel() {
     app.stage.addChild(ship);
     app.stage.addChild(enemy);
     app.stage.addChild(asteroid);
-        //incrementScore();
-        displayScore();
-        scoreText.visible = true;
+    //incrementScore();
+    displayScore();
+    scoreText.visible = true;
 
 };
 
 function createBackground(texture) {
     let tiling = new PIXI.TilingSprite(texture, 800, 600);
-    tiling.position.set(0,0);
+    tiling.position.set(0, 0);
     app.stage.addChild(tiling);
 
     return tiling;
@@ -48,10 +48,10 @@ function checkPlayerCollision(a, b) {
     let boundBoxB = b.getBounds();
 
     return boundBoxA.x + boundBoxA.width > boundBoxB.x &&
-           boundBoxA.x < boundBoxB.x + boundBoxB.width &&
+        boundBoxA.x < boundBoxB.x + boundBoxB.width &&
 
-           boundBoxA.y + boundBoxA.height > boundBoxB.y &&
-           boundBoxA.y < boundBoxB.y + boundBoxB.height;
+        boundBoxA.y + boundBoxA.height > boundBoxB.y &&
+        boundBoxA.y < boundBoxB.y + boundBoxB.height;
 };
 
 // This function draws an asteroid in the centre of the screens width
@@ -63,7 +63,7 @@ function asteroidPhase() {
     asteroid.speed = asteroidSpeed;
     app.stage.addChild(asteroid);
 
-    return asteroid; 
+    return asteroid;
 };
 
 // This function draws an asteroid on the right side of the screens width
@@ -75,7 +75,7 @@ function asteroidPhase1() {
     asteroid.speed = asteroidSpeed;
     app.stage.addChild(asteroid);
 
-    return asteroid; 
+    return asteroid;
 };
 
 // This function draws an asteroid on the left side of the screens width
@@ -87,7 +87,7 @@ function asteroidPhase2() {
     asteroid.speed = asteroidSpeed;
     app.stage.addChild(asteroid);
 
-    return asteroid; 
+    return asteroid;
 };
 
 // This function draws an enemy sprite in the centre of the screens width
@@ -96,7 +96,7 @@ function drawPlayer() {
     ship.anchor.set(0.5);
     ship.x = app.view.width / 2;
     ship.y = app.view.height / 1.1;
-    
+
     return ship;
 };
 
@@ -123,13 +123,13 @@ function drawEnemy2() {
 
 // This function updates aspects like sprite position in delta time, in connection with gameLoop
 function updateLevel(delta) {
-/*  // update enemy movement
+    /*  // update enemy movement
 
-    // This moves the enemy ship in an elliptical shape pattern
-    enemy.position.x = 160 + 100 * Math.cos(enemy.phase);
-    enemy.position.y = 120 + 60 * Math.sin(enemy.phase);
-    // This tints the enemy sprite red
-    enemy.tint = 0xff000f; red */
+        // This moves the enemy ship in an elliptical shape pattern
+        enemy.position.x = 160 + 100 * Math.cos(enemy.phase);
+        enemy.position.y = 120 + 60 * Math.sin(enemy.phase);
+        // This tints the enemy sprite red
+        enemy.tint = 0xff000f; red */
 
     if (titleText.visible == false) {
         app.stage.addChild(scoreText);
@@ -137,7 +137,7 @@ function updateLevel(delta) {
         asteroid.rotation += delta * 0.01;
         enemy.y += 3;
     }
-        
+
 };
 
 // Setup Main Menu/Start Screen
@@ -156,7 +156,7 @@ function startScreen() {
     })
     app.stage.addChild(startGame);
 };
-    
+
 // Setup Title Text //
 function gameName() {
     titleText = new PIXI.Text("INERTIA OVERRIDE");
@@ -172,7 +172,7 @@ function gameName() {
         strokeThickness: 3
     })
     app.stage.addChild(titleText);
-};        
+};
 
 // Setup Game Over text
 function gameOver() {
@@ -197,7 +197,7 @@ function switchContainer(e) {
         mainScreen.visible = true;
         endScreen.visible = false;
         initLevel();
-                
+
     }
 
     // Test if Game Over screen is working
@@ -210,12 +210,12 @@ function switchContainer(e) {
 
 // Checks if user presses or holds a key down on the keyboard
 function keyDown(e) {
-    console.log(e.keyCode);
+    //console.log(e.keyCode);
     keys[e.keyCode] = true;
 };
 // Checks if a user stops holding a key down on the keyboard
 function keyUp(e) {
-    console.log(e.keyCode);
+    //console.log(e.keyCode);
     keys[e.keyCode] = false;
 };
 
@@ -306,7 +306,7 @@ function gameLoop(delta) {
     // update the position of background tiling
     updateBackground(delta);
     // update the position of the bullets in the bullets array
-    updateBullets();
+    updateBullets(delta);
     // update the position of the bullets in the enemyBullets array
     updateEnemyBullets(delta);
     // Updates Movement of enemy and asteroid sprites in delta time
@@ -322,7 +322,7 @@ function gameLoop(delta) {
 
     // Check if Player collides with the Enemy
     if (checkPlayerCollision(ship, enemy)) {
-       // gameOver();
+        // gameOver();
         //endGame();
         ship.tint = 0x00ff00; //green
         enemy.tint = 0x00ff00; //green
@@ -330,10 +330,10 @@ function gameLoop(delta) {
 
     // Check if Player collision with an Asteroid
     if (checkPlayerCollision(ship, asteroid)) {
-       ship.tint = 0x00ff00; //green
-       enemy.tint = 0x00ff00; //green
+        ship.tint = 0x00ff00; //green
+        enemy.tint = 0x00ff00; //green
     }
-    
+
 
 
     // Ship Controls
@@ -371,17 +371,17 @@ function gameLoop(delta) {
     }
     // Spacebar fires Player ships lasers
     if (keys["32"]) {
-        fireBullet();
+        requestBullet(delta);
         inputFire = true;
     }
     // press c to push enemies into the enemies array
     if (keys["67"]) {
-       // fireEnemiesVertical();
-       
+        // fireEnemiesVertical();
+
     }
     // Press q to fire enemy bullets
     if (keys["81"]) {
-         enemyFireBullet();
-    } 
+        enemyFireBullet();
+    }
 
 };
