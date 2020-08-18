@@ -40,6 +40,7 @@ This is my Interactive Milestone Project for the Code Institute. Essentially I s
    1. Item 2b
 
 ## Deployment
+The deployed version of my Game can be found here: https://phillpearsondev.github.io/interactive-milestone-project/
 
 ## Credits
 
