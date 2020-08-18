@@ -35,7 +35,7 @@ As games can be addictive, I wanted to use darker colours which would be easier 
 ## Testing
 1. Start the Game
    1. Once the page is loaded you should see the 800x 600px ratio game window
-   1. Follow the instruction "Press ENTER to start, and the title text should dissapear
+   1. Follow the instruction "Press ENTER to start", and the title text should dissapear
    1. You should now see game objects being rendered, such as the players ship in the center at the bottom of the screen
 1. Increase the score
    1. Start the game following the instruction above labelled "Start the Game"
