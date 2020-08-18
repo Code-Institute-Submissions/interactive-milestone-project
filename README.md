@@ -2,6 +2,7 @@
 This is my Interactive Milestone Project for the Code Institute. Essentially I set out to create a retro styled 2D Space Invaders/Galaga-esque space shooter game, that I would enjoy playing myself. The idea would be to have simple and easy to understand controls, that anyone can pick up and play with. Anmd the Title "Inertia Override" being in reference to being fast paced movement, and the concenpt of controlling that inertia in the movement of a real life space-craft.
 
 ## UX
+As games can be addictive, I wanted to use darker colours which would be easier on the users eyes, particularly if the user were to spend and extended period of time playing the game. This was achieved using mostly muted colours in the body of the HTML page and more vibrant contrasting colours represently the player ships lasers, and enemies on screen, making them more easily indentifyable. In part I also wanted to experiement with a paralaxing background (continously scrolling), in order to achieve a sense of continuous space flight when the players ship is otherwise in a stationary position (so as to enhance or otherwise not ruin the fantasy). I thought this would also make a very good backdrop for the initial point of contact the user has when loading the page.
 
 ## Features
 
@@ -24,29 +25,28 @@ This is my Interactive Milestone Project for the Code Institute. Essentially I s
 * A HUD element in the game window so the player can keep track of their extra lives.
 
 ## Technologies Used
-* Visual Studio Code
-* Live Server (Visual Studio Extension)
-* Github Repositories
-* Github Pages
-* PIXI.js (JS Framework)
-* Krita (Free image editing software)
+* Visual Studio Code (My IDE of choice)
+* Live Server (Visual Studio Extension, to disable CORS error and load local files)
+* Github Repositories (To host and store the code)
+* Github Pages (To deploy the code for others users including examiners to to be able to access)
+* PIXI.js (JS Framework for rendering graphics in Canvas or WebGL)
+* Krita (Free image editing software, to make a few aesthetic changes to the graphics)
 
 ## Testing
-1. Item 1
-   1. Item 1a
-   1. Item 1b
-1. Item 2
-   1. Item 2a
-   1. Item 2b
+1. Start the Game
+   1. Once the page is loaded you should see the 800x 600px ratio game window
+   1. Follow the instruction "Press ENTER to start, and the title text should dissapear
+   1. You should now see game objects being rendered, such as the players ship in the center at the bottom of the screen
+1. Increase the score
+   1. Start the game following the instruction above labelled "Start the Game"
+   1. In the top left corner of the screen you should see "score: 0"
+   1. Once you see the orangey red enemies ship appear on screen, try shooting them, by using the arrow keys on your keyboard to move the player ship ship, and spacebar on the keyboard to fire your ships lasers.
+   1. You should now see the numerical values next to the text "score:" increase in value
 
 ## Deployment
 The deployed version of my Game can be found here: https://phillpearsondev.github.io/interactive-milestone-project/
 
 ## Credits
-
-### Content
-* Item 1
-* Item 2
 
 ### Media
 * The Image for The Player Ship was taken from: https://images.app.goo.gl/2epjPE53tJLtRSjbA and scaled down.
