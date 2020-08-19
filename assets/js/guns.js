@@ -1,66 +1,3 @@
-/* ------------------------------------- Enemy bullets ------------------------------------- */
-
-// Shoots enemy bullets
-function enemyFireBullet() {
-    let enemyBullet = createEnemyBullet();
-    enemyBullets.push(enemyBullet);
-};
-
-// Creates the enemies bullets
-
-function createEnemyBullet() {
-    let enemyBullet = PIXI.Sprite.from(app.loader.resources.enemyBullet.texture);
-    enemyBullet.anchor.set(0.5);
-    enemyBullet.x = enemy.x;
-    enemyBullet.y = enemy.y + 14;
-    enemyBullet.speed = enemyBulletSpeed;
-    app.stage.addChild(enemyBullet);
-
-    return enemyBullet;
-};
-
-// Increments enemyBullets array by pushing enemyBullet. sets up a way to delete array entries
-function updateEnemyBullets(delta) {
-    for (let i = 0; i < enemyBullets.length; i++) {
-        enemyBullets[i].position.y += enemyBullets[i].speed;
-
-        if (enemyBullets[i].position.y < 1) {
-            enemyBullets[i].dead = true;
-        }
-    }
-
-    // Removes enemyBullets from array when enemyBullet position is offscreen
-    for (let i = 0; i < enemyBullets.length; i++) {
-        enemyBullets[i].position.y += enemyBullets[i].speed;
-
-        if (enemyBullets[i].dead) {
-            app.stage.removeChild(enemyBullets[i]);
-            enemyBullets.splice(i, 1);
-        }
-
-        // check if bullets[] hits enemy, then turn enemy red
-        if (checkPlayerCollision(enemyBullets[i], ship)) {
-            // gameOver();
-            //endGame();
-            enemyBullets[i].dead = true;
-            ship.tint = 0xff000f; //red
-
-        }
-
-        // check if bullets[] hits asteroid, then tint asteroid red
-        if (checkPlayerCollision(enemyBullets[i], ship)) {
-            // gameOver();
-            //endGame();
-            enemyBullets[i].dead = true;
-            ship.tint = 0xff000f; //red
-
-        }
-    }
-};
-
-/* ------------------------------------- Player Bullets ------------------------------------- */
-
-
 // This function pushes the bullet to the bullets array
 function fireBullet(delta) {
     if (bulletRequested < 1)
@@ -134,8 +71,6 @@ function updateBullets(delta) {
 
         // check if bullets[] hits enemy, then increments the score
         if (checkPlayerCollision(bullets[i], enemy)) {
-            //gameOver();
-            //endGame();
             bullets[i].dead = true;
             app.stage.removeChild(enemy);
             enemy.dead = true;
@@ -145,8 +80,6 @@ function updateBullets(delta) {
 
         // check if bullets[] hits asteroid, then asteroid "blocks the bullets"
         if (checkPlayerCollision(bullets[i], asteroid)) {
-            //gameOver();
-            //endGame();
             bullets[i].dead = true;
 
         }

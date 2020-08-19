@@ -1,6 +1,46 @@
 // This document contains the bulk of the logic for how various aspects of the game will work
 // which consists of mostly functions, inclusive in the gameLoop function.
 
+// Ship Controls
+function updateShipControls(delta) {
+    // A is move Player ship left
+    if (keys["65"]) {
+        ship.x -= 5;
+    }
+    // D is move Player ship right
+    if (keys["68"]) {
+        ship.x += 5;
+    }
+    // <- is move Player ship left
+    if (keys["37"]) {
+        ship.x -= 5;
+    }
+    // -> is move Player ship right
+    if (keys["39"]) {
+        ship.x += 5;
+    }
+    // ^ is move Player ship up
+    if (keys["38"]) {
+        ship.y -= 5;
+    }
+    // downArrow is move Player ship down
+    if (keys["40"]) {
+        ship.y += 5;
+    }
+    // W is move Player ship up
+    if (keys["87"]) {
+        ship.y -= 5;
+    }
+    // S is move Player ship down
+    if (keys["83"]) {
+        ship.y += 5;
+    }
+    // Spacebar fires Player ships lasers
+    if (keys["32"]) {
+        requestBullet(delta);
+        inputFire = true;
+    }
+};
 
 // This function when called removes the title text, adds our Player ship, an Enemy and an Asteroid to the screen
 // as well as calls our function to display the Players score
@@ -31,14 +71,7 @@ function checkPlayerCollision(a, b) {
 
 // This function updates aspects like sprite position in delta time, in connection with gameLoop
 function updateLevel(delta) {
-    /*  // update enemy movement
-
-        // This moves the enemy ship in an elliptical shape pattern
-        enemy.position.x = 160 + 100 * Math.cos(enemy.phase);
-        enemy.position.y = 120 + 60 * Math.sin(enemy.phase);
-        // This tints the enemy sprite red
-        enemy.tint = 0xff000f; red */
-
+    // update enemy movement
     if (titleText.visible == false) {
         app.stage.addChild(scoreText);
         asteroid.y += 2.5;
@@ -207,8 +240,6 @@ function gameLoop(delta) {
     updateBackground(delta);
     // update the position of the bullets in the bullets array
     updateBullets(delta);
-    // update the position of the bullets in the enemyBullets array
-    updateEnemyBullets(delta);
     // Updates Movement of enemy and asteroid sprites in delta time
     updateLevel(delta);
     // Constantly checks if the player collides with the sides of the screen. and stops player from exiting
@@ -222,66 +253,17 @@ function gameLoop(delta) {
 
     // Check if Player collides with the Enemy
     if (checkPlayerCollision(ship, enemy)) {
-        // gameOver();
-        //endGame();
-        ship.tint = 0x00ff00; //green
-        enemy.tint = 0x00ff00; //green
+        gameOver();
+        endGame();
     }
 
     // Check if Player collision with an Asteroid
     if (checkPlayerCollision(ship, asteroid)) {
-        ship.tint = 0x00ff00; //green
-        enemy.tint = 0x00ff00; //green
+        gameOver();
+        endGame();
     }
 
-
-
-    // Ship Controls
-    // A is move Player ship left
-    if (keys["65"]) {
-        ship.x -= 5;
-    }
-    // D is move Player ship right
-    if (keys["68"]) {
-        ship.x += 5;
-    }
-    // <- is move Player ship left
-    if (keys["37"]) {
-        ship.x -= 5;
-    }
-    // -> is move Player ship right
-    if (keys["39"]) {
-        ship.x += 5;
-    }
-    // ^ is move Player ship up
-    if (keys["38"]) {
-        ship.y -= 5;
-    }
-    // downArrow is move Player ship down
-    if (keys["40"]) {
-        ship.y += 5;
-    }
-    // W is move Player ship up
-    if (keys["87"]) {
-        ship.y -= 5;
-    }
-    // S is move Player ship down
-    if (keys["83"]) {
-        ship.y += 5;
-    }
-    // Spacebar fires Player ships lasers
-    if (keys["32"]) {
-        requestBullet(delta);
-        inputFire = true;
-    }
-    // press c to push enemies into the enemies array
-    if (keys["67"]) {
-        // fireEnemiesVertical();
-
-    }
-    // Press q to fire enemy bullets
-    if (keys["81"]) {
-        enemyFireBullet();
-    }
+    // This allows the player to control the ship in game
+    updateShipControls();
 
 };

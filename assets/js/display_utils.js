@@ -1,3 +1,6 @@
+// This document contains a collection of functions pertaining largely to objects that are drawn
+// onscreen.
+
 // This function sets up and updates our score
 function displayScore() {
 
