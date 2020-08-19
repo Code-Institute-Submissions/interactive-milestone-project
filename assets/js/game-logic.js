@@ -155,6 +155,7 @@ function startScreen() {
         strokeThickness: 3
     })
     app.stage.addChild(startGame);
+    
 };
 
 // Setup Title Text //
