@@ -59,14 +59,14 @@ window.onload = function() {
 
     // Defines our Assets to preload in their own string names and where to find them
     // These are our background textures, and in game sprites
-    app.loader.add("backgroundBack", "assets/images/stars-back.png");
-    app.loader.add("backgroundMiddle", "assets/images/stars-backmiddle.png");
-    app.loader.add("backgroundFront", "assets/images/stars-backfront.png");
+    app.loader.add("background-back", "assets/images/stars-back.png");
+    app.loader.add("background-middle", "assets/images/stars-backmiddle.png");
+    app.loader.add("background-front", "assets/images/stars-backfront.png");
     app.loader.add("asteroid", "assets/images/asteroid.png");
     app.loader.add("bullet", "assets/images/bullet.png");
     app.loader.add("ship", "assets/images/ship.png");
     app.loader.add("enemy", "assets/images/enemy.png");
-    app.loader.add("enemyBullet", "assets/images/enemyBullet.png");
+    app.loader.add("enemy-bullet", "assets/images/enemy-bullet.png");
 
     // Adds the showProgress function to the PIXI method onProgress in the loader
     app.loader.onProgress.add(showProgress);
@@ -105,9 +105,9 @@ window.onload = function() {
 
     // This sets up the Background textures (stored in variables) to be used in the background tiling
     function initBackground() {
-        backgroundBack = createBackground(app.loader.resources["backgroundBack"].texture);
-        backgroundMiddle = createBackground(app.loader.resources["backgroundMiddle"].texture);
-        backgroundFront = createBackground(app.loader.resources["backgroundFront"].texture);
+        backgroundBack = createBackground(app.loader.resources["background-back"].texture);
+        backgroundMiddle = createBackground(app.loader.resources["background-middle"].texture);
+        backgroundFront = createBackground(app.loader.resources["background-front"].texture);
 
     }
 
