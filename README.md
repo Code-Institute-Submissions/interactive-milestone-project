@@ -13,6 +13,9 @@ As games can be addictive, I wanted to use darker colours which would be easier 
 * As a site user, I should face some in-game challenge, such as triggering Game Over when colliding with a hazard (such as asteroids/enemies)
 * As a site user, I should have some sort of win/lose condition, such as a Game Over screen
 
+### Wireframes
+My Wireframes can be found here: https://github.com/phillpearsondev/interactive-milestone-project/blob/master/wireframes/WireFrames.pdf
+
 ## Features
 
 ### Existing Features
