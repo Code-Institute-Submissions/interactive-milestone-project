@@ -1,4 +1,6 @@
-# Inertia Override
+![Game Title](assets/images/title-image.jpg)
+
+
 This is my Interactive Milestone Project for the Code Institute. Essentially I set out to create a retro styled 2D Space Invaders/Galaga-esque space shooter game, that I would enjoy playing myself. The idea would be to have simple and easy to understand controls, that anyone can pick up and play with. Anmd the Title "Inertia Override" being in reference to being fast paced movement, and the concenpt of controlling that inertia in the movement of a real life space-craft.
 
 ## UX
