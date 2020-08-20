@@ -26,13 +26,23 @@ As games can be addictive, I wanted to use darker colours which would be easier 
 * Powerups: such as bonus points. Variation in lasers for the player to use. Extra Lives.
 * A HUD element in the game window so the player can keep track of their extra lives.
 
+## How the code works
+### Functionality in each file
+* <strong>pixi.js</strong>: is a JavaScript Framework with prededined functions that allows use of drawing with canvas or WebGl support, depending on browser capabillity
+* <strong>main.js</strong>: Allows the developer to pre-load certain assets before running the. Sets up the Game window. And handle event listeners, like "Keydown"
+* <strong>display_utils.js</strong>: Is largely used to define a collection of functions the developer uses to draw anything graphical in the game
+* <strong>game_logic.js</strong>: This contains a collection of functions defined for handling the game loop, the score, calling functions from other .js files, starting and ending the game, collisions (between the ship, asteroid and enemy)
+* <strong>guns.js</strong>: A seperate file for drawing the players weaponry, and the logic for making it work
+
 ## Technologies Used
-* Visual Studio Code (My IDE of choice)
-* Live Server (Visual Studio Extension, to disable CORS error and load local files)
-* Github Repositories (To host and store the code)
-* Github Pages (To deploy the code for others users including examiners to to be able to access)
-* PIXI.js (JS Framework for rendering graphics in Canvas or WebGL)
-* Krita (Free image editing software, to make a few aesthetic changes to the graphics)
+* <strong>Visual Studio Code</strong>: My IDE of choice
+* <strong>Live Server</strong>: Visual Studio Extension, to disable CORS error and load local files
+* <strong>Github Repositories</strong>: To host and store the code
+* <strong>Github Pages</strong>: To deploy the code for others users including examiners to to be able to access
+* <strong>Git</strong>: Was used to allow local version control, and then push to Gitub Repositories.
+* <strong>PIXI.js</strong>: JS Framework for rendering graphics in Canvas or WebGL
+* <strong>Krita</strong>: Free image editing software, to make a few aesthetic changes to the graphics
+* <strong>Chrome Developer Tools</strong>: For checking the console tab specifically, to <strong>test</strong> if their are any fujnctional errors in the code
 
 ## Testing
 1. Start the Game
@@ -44,6 +54,10 @@ As games can be addictive, I wanted to use darker colours which would be easier 
    1. In the top left corner of the screen you should see "score: 0"
    1. Once you see the orangey red enemies ship appear on screen, try shooting them, by using the arrow keys on your keyboard to move the player ship ship, and spacebar on the keyboard to fire your ships lasers.
    1. You should now see the numerical values next to the text "score:" increase in value
+1. Game Over
+   1. Assuming you've follow the steps to start the Game at the top of the Testing section
+   1. Use the arrow keys on your keyboard, and try colliding with the enemies or asteroids displayed on screen
+   1. Your player ship ship should be removed from the scene, and you should see the text "GAME OVER" displayed center screen in red
 
 ## Deployment
 The deployed version of my Game can be found here: https://phillpearsondev.github.io/interactive-milestone-project/
@@ -57,5 +71,7 @@ The deployed version of my Game can be found here: https://phillpearsondev.githu
 * The Images used in both the Players and Enemy lasers were taken from: https://images.app.goo.gl/ndYYXsgZ9rNRydep8 and scaled down and colorized.
 
 ### Acknowledgements
+A big thank you to my mentor Reuben Ferrante, for all of his great advice.
+
 * I received inspiration via PIXI.js tutorials from the Youtuber Dower Chin
 * I received inspiration from the 1978 Space Invaders Game. An example of which can be found here: http://www.civrays.com/invaders.html
