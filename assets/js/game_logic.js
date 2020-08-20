@@ -196,11 +196,11 @@ function checkScreenBounds(delta) {
 };
 
 // This function spawns enemies in a loop once each enemy reaches beyond the bottom of the screen
-function spawner1() {
+function enemySpawner() {
     // update enemy spawning
     if (enemy.x == app.view.width / 3) {
         if (enemy.y > app.view.height + 15) {
-            drawEnemy2();
+            drawEnemy(1.5, true);
         }
     };
     if (enemy.x == app.view.width / 1.5) {
@@ -211,18 +211,18 @@ function spawner1() {
 }
 
 // This function spawns asteroids in a loop once each asteroid reaches beyond the bottom of the screen
-function asteroidSpawner1() {
+function asteroidSpawner() {
     // update asteroid spawning
     // when asteroid on the left of screen goes off screen
     if (asteroid.x == app.view.width - 600) {
         if (asteroid.y > app.view.height + 20) {
-            asteroidPhase1();
+            asteroidPhaseOne();
         }
     };
     // when asteroid on the right of screen goes off screen
     if (asteroid.x == app.view.width - 200) {
         if (asteroid.y == app.view.height + 20) {
-            asteroidPhase2();
+            asteroidPhaseTwo();
         }
     };
     // when asteroid in center of screen goes off screen
@@ -239,17 +239,17 @@ function gameLoop(delta) {
     // update the position of background tiling
     updateBackground(delta);
     // update the position of the bullets in the bullets array
-    updateBullets(delta);
+    updateBulletsAndCheckCollision(delta);
     // Updates Movement of enemy and asteroid sprites in delta time
     updateLevel(delta);
     // Constantly checks if the player collides with the sides of the screen. and stops player from exiting
     checkScreenBounds(delta);
 
     // This spawns enemies on a loop
-    spawner1();
+    enemySpawner();
 
     // This spawns asteroids on a loop
-    asteroidSpawner1();
+    asteroidSpawner();
 
     // Check if Player collides with the Enemy
     if (checkPlayerCollision(ship, enemy)) {

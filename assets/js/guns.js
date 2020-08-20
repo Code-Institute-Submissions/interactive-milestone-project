@@ -31,7 +31,7 @@ function createBullet() {
 
 
 // Allows us to loop the bullets array in order to update the position of each bullet
-function updateBullets(delta) {
+function updateBulletsAndCheckCollision(delta) {
 
     fireBullet(delta);
 
