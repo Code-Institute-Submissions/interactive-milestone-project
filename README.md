@@ -6,6 +6,13 @@ This is my Interactive Milestone Project for the Code Institute. Essentially I s
 ## UX
 As games can be addictive, I wanted to use darker colours which would be easier on the users eyes, particularly if the user were to spend and extended period of time playing the game. This was achieved using mostly muted colours in the body of the HTML page and more vibrant contrasting colours represently the player ships lasers, and enemies on screen, making them more easily indentifyable. In part I also wanted to experiement with a paralaxing background (continously scrolling), in order to achieve a sense of continuous space flight when the players ship is otherwise in a stationary position (so as to enhance or otherwise not ruin the fantasy). I thought this would also make a very good backdrop for the initial point of contact the user has when loading the page.
 
+* As a site user, I should see a main menu or title screen when I load up the webpage
+* As a site user, I should have some basic instruction on how to start or play the game
+* As a site user, the controls for the game should be intuitive an-d easy to pick up and use
+* As a site user, I should be able to score points by shooting the onscreen enemies
+* As a site user, I should face some in-game challenge, such as triggering Game Over when colliding with a hazard (such as asteroids/enemies)
+* As a site user, I should have some sort of win/lose condition, such as a Game Over screen
+
 ## Features
 
 ### Existing Features
@@ -31,8 +38,8 @@ As games can be addictive, I wanted to use darker colours which would be easier 
 * <strong>pixi.js</strong>: is a JavaScript Framework with prededined functions that allows use of drawing with canvas or WebGl support, depending on browser capabillity
 * <strong>main.js</strong>: Allows the developer to pre-load certain assets before running the. Sets up the Game window. And handle event listeners, like "Keydown"
 * <strong>display_utils.js</strong>: Is largely used to define a collection of functions the developer uses to draw anything graphical in the game
-* <strong>game_logic.js</strong>: This contains a collection of functions defined for handling the game loop, the score, calling functions from other .js files, starting and ending the game, collisions (between the ship, asteroid and enemy)
-* <strong>guns.js</strong>: A seperate file for drawing the players weaponry, and the logic for making it work
+* <strong>game_logic.js</strong>: This contains a collection of functions defined for handling the game loop, the score, calling functions from other .js files, starting and ending the game, collisions (between the ship, asteroid and enemy), when to draw the asteroids and enemies and updating the scrolling background
+* <strong>guns.js</strong>: A seperate file for drawing the players weaponry, and the logic for checking Bullet to asteroid and bullet to enemy collision
 
 ## Technologies Used
 * <strong>Visual Studio Code</strong>: My IDE of choice
@@ -42,7 +49,7 @@ As games can be addictive, I wanted to use darker colours which would be easier 
 * <strong>Git</strong>: Was used to allow local version control, and then push to Gitub Repositories.
 * <strong>PIXI.js</strong>: JS Framework for rendering graphics in Canvas or WebGL
 * <strong>Krita</strong>: Free image editing software, to make a few aesthetic changes to the graphics
-* <strong>Chrome Developer Tools</strong>: For checking the console tab specifically, to <strong>test</strong> if their are any fujnctional errors in the code
+* <strong>Chrome Developer Tools</strong>: For checking the console tab specifically, to <strong>test</strong> if their are any functional errors in the code
 
 ## Testing
 1. Start the Game
@@ -61,6 +68,33 @@ As games can be addictive, I wanted to use darker colours which would be easier 
 
 ## Deployment
 The deployed version of my Game can be found here: https://phillpearsondev.github.io/interactive-milestone-project/
+
+### How was it deployed
+
+* I created a new environment in VS Code
+* In the terminal, entered 'git init'
+* Created all my folders and files.
+* Entered 'git add .' into the bash terminal
+* Entered 'git commit' into the bash terminal and created my initial commit
+* I then linked my local git repository to a GitHub repository.
+* I then followed the below steps to deploy the site to GitHub pages.
+
+### To deploy the website to GitHub pages
+
+* Selected the interactive-milestone-project from my GitHub dashboard.
+* Selected 'Settings' from the menu bar.
+* From the GitHub pages section, I chose 'master branch' from the dropdown menu.
+* Once selected, the page refreshed and a link was displayed in the GitHub pages section to my wesbite.
+
+https://phillpearsondev.github.io/interactive-milestone-project/
+
+### To run this project locally
+
+* Follow this link to the GitHub Repositiry
+* Click on the 'Clone or Download' button.
+* Copy the URL provided.
+* Open a terminal, move to your desired directory.
+* Type 'git clone' and paste in the URL.
 
 ## Credits
 
